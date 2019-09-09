@@ -1,3 +1,3 @@
 number = 2
 
-print('2です')
+print('It is 2')

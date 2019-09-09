@@ -1,16 +1,16 @@
 import random
 
-print('じゃんけんスタート')
+print('Start \'rock-scissors-paper\'')
 
-print('自分の手を入力してください')
-my_hand = int(input('0:グー, 1:チョキ, 2:パー'))
+print('Input your hand')
+my_hand = int(input('0:rock, 1:scissors, 2:paper'))
 you_hand = random.randint(0, 2)
 
 hand_diff = my_hand - you_hand
 
 if hand_diff == 0:
-  print('あいこ')
+  print('draw')
 elif hand_diff == -1 or hand_diff == 2:
-  print('勝ち')
+  print('win')
 else:
-  print('負け')
+  print('lose')

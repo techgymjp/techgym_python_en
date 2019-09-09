@@ -1,4 +1,4 @@
 def calc():
-  print('calcの中身')
+  print('In side of \'calc\'')
 
 calc()

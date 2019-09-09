@@ -1,13 +1,13 @@
 import random
 
-hands = ['グー', 'チョキ', 'パー']
+hands = ['rock', 'scissors', 'paper']
 
 def start_message():
-  print('じゃんけんスタート')
+  print('Start \'rock-scissors-paper\'')
 
 def get_my_hand():
-  print('自分の手を入力してください')
-  return int(input('0:グー, 1:チョキ, 2:パー'))
+  print('Input your hand')
+  return int(input('0:rock, 1:scissors, 2:paper'))
 
 def get_you_hand():
   return random.randint(0, 2)
@@ -16,16 +16,16 @@ def get_hand_name(hand_number):
   return hands[hand_number]
 
 def view_hand(my_hand, you_hand):
-  print('自分の手は ' + get_hand_name(my_hand))
-  print('相手の手は ' + get_hand_name(you_hand))
+  print('My hand is ' + get_hand_name(my_hand))
+  print('Rival\'s hand is ' + get_hand_name(you_hand))
 
 def view_result(hand_diff):
   if hand_diff == 0:
-    print('あいこ')
+    print('draw')
   elif hand_diff == -1 or hand_diff == 2:
-    print('勝ち')
+    print('win')
   else:
-    print('負け')
+    print('lose')
 
 start_message()
 

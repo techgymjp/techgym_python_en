@@ -1,3 +1,3 @@
 def calc():
-
-calc()
+    
+    calc()

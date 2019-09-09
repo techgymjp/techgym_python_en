@@ -1,22 +1,22 @@
 import random
 
 def start_message():
-  print('じゃんけんスタート')
+  print('Start \'rock-scissors-paper\'')
 
 def get_my_hand():
-  print('自分の手を入力してください')
-  return int(input('0:グー, 1:チョキ, 2:パー'))
+  print('Input your hand')
+  return int(input('0:rock, 1:scissors, 2:paper'))
 
 def get_you_hand():
   return random.randint(0, 2)
 
 def view_result(hand_diff):
   if hand_diff == 0:
-    print('あいこ')
+    print('draw')
   elif hand_diff == -1 or hand_diff == 2:
-    print('勝ち')
+    print('win')
   else:
-    print('負け')
+    print('lose')
 
 start_message()
 

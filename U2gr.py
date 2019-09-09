@@ -1,8 +1,8 @@
 number = 3
 
 if number == 1:
-  print('1です')
+  print('It is 1')
 elif number == 2 or number == 3:
-  print('2か3です')
+  print('It is 2 or 3')
 else:
-  print('条件に当てはまりません')
+  print('It doesn\'t match the condition')

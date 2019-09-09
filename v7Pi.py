@@ -1,29 +1,29 @@
 import random
 
-print('じゃんけんスタート')
+print('Start \'rock-scissors-paper\'')
 
-print('自分の手を入力してください')
-my_hand = int(input('0:グー, 1:チョキ, 2:パー'))
+print('Input your hand')
+my_hand = int(input('0:rock, 1:scissors, 2:paper'))
 you_hand = random.randint(0, 2)
 
 if my_hand == 0:
   if you_hand == 0:
-    print('あいこ')
+    print('draw')
   elif you_hand == 1:
-    print('勝ち')
+    print('win')
   elif you_hand == 2:
-    print('負け')
+    print('lose')
 elif my_hand == 1:
   if you_hand == 0:
-    print('負け')
+    print('lose')
   elif you_hand == 1:
-    print('あいこ')
+    print('draw')
   elif you_hand == 2:
-    print('勝ち')
+    print('win')
 elif my_hand == 2:
   if you_hand == 0:
-    print('勝ち')
+    print('win')
   elif you_hand == 1:
-    print('負け')
+    print('lose')
   elif you_hand == 2:
-    print('あいこ')
+    print('draw')
