@@ -2,9 +2,9 @@ import random
 
 level = 1
 
-print('違う漢字の番号(例:A1)を入力してください')
+print('Input cell number (e.g. A1) of the different character.')
 
-print('レベル:' + str(level))
+print('level: ' + str(level))
 
-choice = input('(例:A1)')
-print('デバッグ:choice = ' + choice)
+choice = input('(e.g. A1)')
+print('Debug: choice = ' + choice)

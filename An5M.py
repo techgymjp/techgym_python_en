@@ -1,8 +1,8 @@
 import random
 
-print('違う漢字の番号(例:A1)を入力してください')
+print('Input cell number (e.g. A1) of the different character.')
 
-print('レベル:1')
+print('level:1')
 
-choice = input('(例:A1)')
-print('デバッグ:choice = ' + choice)
+choice = input('(e.g. A1)')
+print('Debug:choice = ' + choice)

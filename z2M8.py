@@ -1,26 +1,26 @@
 import random
 
-data = [['見','貝'], ['土','士'], ['眠','眼']]
+data = [['O','0'], ['l','1'], ['u','v']]
 level = 1
 
 def start_message():
-  print('違う漢字の番号(例:A1)を入力してください')
+  print('Input cell number (e.g. A1) of the different character.')
 
 def section_message():
-  print('レベル:' + str(level))
+  print('level: ' + str(level))
 
 def view_question():
   choice_data = random.randint(0, 2)
   mistake_number = random.randint(0, 8)
-  print('デバッグ:mistake_number = ' + str(mistake_number))
+  print('Debug: mistake_number = ' + str(mistake_number))
   question = data[choice_data]
   print(question)
   i = 0
   j = 0
-  print('／｜A B C')
-  print('ーーーーー')
+  print('/|ABC')
+  print('-----')
   while i < 3:
-    question_str = str(i + 1) + '｜'
+    question_str = str(i + 1) + '|'
     while j < 3:
       if (i * 3 + j) == mistake_number:
         question_str += question[1]
@@ -34,8 +34,8 @@ def view_question():
 def play():
   section_message()
   view_question()
-  choice = input('(例:A1)')
-  print('デバッグ:choice = ' + choice)
+  choice = input('(e.g. A1)')
+  print('Debug: choice = ' + choice)
 
 start_message()
 play()

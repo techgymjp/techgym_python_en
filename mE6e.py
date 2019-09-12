@@ -1,29 +1,29 @@
 import random
 import math
 
-data = [['見','貝'], ['土','士'], ['眠','眼']]
+data = [['O','0'], ['l','1'], ['u','v']]
 level = 1
 col = 5
 row = 4
 
 def start_message():
-  print('違う漢字の番号(例:A1)を入力してください')
+  print('Input cell number (e.g. A1) of the different character.')
 
 def section_message():
-  print('レベル:' + str(level))
+  print('level: ' + str(level))
 
 def view_question():
   choice_data = random.randint(0, 2)
   mistake_number = random.randint(0, (col * row) - 1 )
-  print('デバッグ:mistake_number = ' + str(mistake_number))
+  print('Debug: mistake_number = ' + str(mistake_number))
   question = data[choice_data]
   print(question)
   i = 0
   j = 0
-  print('／｜A B C')
-  print('ーーーーー')
+  print('/|ABC')
+  print('-----')
   while i < row:
-    question_str = str(i + 1) + '｜'
+    question_str = str(i + 1) + '|'
     while j < col:
       if (i * col + j) == mistake_number:
         question_str += question[1]
@@ -51,10 +51,10 @@ def is_correct_number(mistake_number, input_number):
 
 def view_result(is_correct, mistake_number):
   if is_correct:
-    print('正解！')
+    print('Correct!')
   else:
-    print('不正解')
-    print('正解は ' + change_string(mistake_number))
+    print('Wrong')
+    print('Correct answer is ' + change_string(mistake_number))
 
 def change_string(number):
   number_data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
@@ -66,10 +66,10 @@ def change_string(number):
 def play():
   section_message()
   mistake_number = view_question()
-  choice = input('(例:A1)')
-  print('デバッグ:choice = ' + choice)
+  choice = input('(e.g. A1)')
+  print('Debug: choice = ' + choice)
   input_number = change_input_number(choice)
-  print('デバッグ:input_number = ' + str(input_number))
+  print('Debug: input_number = ' + str(input_number))
   is_correct = is_correct_number(mistake_number, input_number)
   view_result(is_correct, mistake_number)
 

@@ -1,17 +1,17 @@
 import random
 import math
 
-data = [['見','貝'], ['土','士'], ['眠','眼']]
+data = [['O','0'], ['l','1'], ['u','v']]
 number_data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 level = 1
 col = 3
 row = 3
 
 def start_message():
-  print('違う漢字の番号(例:A1)を入力してください')
+  print('Input cell number (e.g. A1) of the different character.')
 
 def section_message():
-  print('レベル:' + str(level))
+  print('level:' + str(level))
 
 def view_question():
   choice_data = random.randint(0, 2)
@@ -20,17 +20,17 @@ def view_question():
   print(question)
   i = 0
   j = 0
-  question_str1 = '／｜'
-  question_str2 = 'ーー'
+  question_str1 = '/|'
+  question_str2 = '--'
   while i < col:
-    question_str1 += number_data[i] + ' '
-    question_str2 += 'ー'
+    question_str1 += number_data[i] + ''
+    question_str2 += '-'
     i += 1
   print(question_str1)
   print(question_str2)
   i = 0
   while i < row:
-    question_str = str(i + 1) + '｜'
+    question_str = str(i + 1) + '|'
     while j < col:
       if (i * col + j) == mistake_number:
         question_str += question[1]
@@ -58,13 +58,13 @@ def is_correct_number(mistake_number, input_number):
 
 def view_result(is_correct, mistake_number):
   if is_correct:
-    print('正解！')
+    print('Correct!')
     if level < 13:
       level_up()
       play()
   else:
-    print('不正解')
-    print('正解は ' + change_string(mistake_number))
+    print('Wrong')
+    print('Correct answer is ' + change_string(mistake_number))
     level_down()
     play()
 
@@ -95,7 +95,7 @@ def level_down():
 def play():
   section_message()
   mistake_number = view_question()
-  choice = input('(例:A1)')
+  choice = input('(e.g. A1)')
   input_number = change_input_number(choice)
   is_correct = is_correct_number(mistake_number, input_number)
   view_result(is_correct, mistake_number)

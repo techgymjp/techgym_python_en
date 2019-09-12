@@ -3,15 +3,15 @@ import random
 level = 1
 
 def start_message():
-  print('違う漢字の番号(例:A1)を入力してください')
+  print('Input cell number (e.g. A1) of the different character.')
 
 def section_message():
-  print('レベル:' + str(level))
+  print('level:' + str(level))
 
 def play():
   section_message()
-  choice = input('(例:A1)')
-  print('デバッグ:choice = ' + choice)
+  choice = input('(e.g. A1)')
+  print('Debug:choice = ' + choice)
 
 start_message()
 play()
