@@ -10,18 +10,18 @@ class Team:
     self.defense = defense
 
   def info(self):
-    print(self.name + ': 攻撃力:' + str(self.attack) + ' / 守備力:' + str(self.defense))
+    print(self.name + ': Offensive power:' + str(self.attack) + ' / Defensive power:' + str(self.defense))
 
 def create_teams():
   global teams
-  team1 = Team('アタッカーズ', 80, 20)
-  team2 = Team('ディフェンダーズ', 30, 70)
-  team3 = Team('アベレージーズ', 50, 50)
+  team1 = Team('Atackers', 80, 20)
+  team2 = Team('Defenders', 30, 70)
+  team3 = Team('Averages', 50, 50)
   teams = [team1, team2, team3]
 
 def show_teams():
   index = 1
-  print('全チームの情報')
+  print('Information of all teams')
   for team in teams:
     print(str(index))
     team.info()
@@ -29,13 +29,13 @@ def show_teams():
 
 def choice_team(player):
   if player == 'myself':
-    player_name = '自分'
+    player_name = 'Your'
   elif player == 'enemy':
-    player_name = '相手'
+    player_name = 'Opponent\'s'
 
-  choice_team_number = int(input(player_name + 'のチームを選択してください（1〜3）'))
+  choice_team_number = int(input('Select ' + player_name + ' team(1-3) '))
   playing_teams[player] = teams[choice_team_number - 1]
-  print(player_name + 'のチームは「' + playing_teams[player].name + '」です')
+  print(player_name + ' team is \'' + playing_teams[player].name + '\'')
 
 def play():
   create_teams()

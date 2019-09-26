@@ -10,13 +10,13 @@ class Team:
 
 def create_teams():
   global teams
-  team1 = Team('アタッカーズ', 80, 20)
-  team2 = Team('ディフェンダーズ', 30, 70)
-  team3 = Team('アベレージーズ', 50, 50)
+  team1 = Team('Atackers', 80, 20)
+  team2 = Team('Defenders', 30, 70)
+  team3 = Team('Averages', 50, 50)
   teams = [team1, team2, team3]
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   create_teams()
 
 play()

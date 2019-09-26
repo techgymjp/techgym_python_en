@@ -7,6 +7,6 @@ class Team:
     self.defense = defense
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
 
 play()
