@@ -6,14 +6,14 @@ class Player:
     self.coin = coin
 
   def info(self):
-    print(self.name + '：' + str(self.coin))
+    print(self.name + ': ' + str(self.coin))
 
 class Human(Player):
   def __init__(self, name, coin):
     super().__init__(name, coin)
 
   def bet(self):
-    bet_message = '何枚BETしますか？：(1-99)'
+    bet_message = 'How many coins do you bet?: (1-99)'
     bet_coin = input(bet_message)
     while not self.enable_bet_coin(bet_coin):
       bet_coin = input(bet_message)
@@ -30,7 +30,7 @@ class Human(Player):
       return False
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug:play()')
   
   human = Human('MY', 500)
   human.info()

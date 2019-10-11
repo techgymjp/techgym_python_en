@@ -10,6 +10,6 @@ class Human(Player):
     super().__init__(name, coin)
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug:play()')
 
 play()

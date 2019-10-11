@@ -9,18 +9,18 @@ class Player:
     self.coin = coin
 
   def info(self):
-    print(self.name + '：' + str(self.coin))
+    print(self.name + ': ' + str(self.coin))
 
   def set_bet_coin(self, bet_coin):
     self.coin -= bet_coin
-    print(self.name + 'は ' + str(bet_coin) + 'コイン BETしました。')
+    print(self.name + ' bet ' + str(bet_coin) + ' coin(s).')
 
 class Human(Player):
   def __init__(self, name, coin):
     super().__init__(name, coin)
 
   def bet(self):
-    bet_message = '何枚BETしますか？：(1-99)'
+    bet_message = 'How many coins do you bet?: (1-99)'
     bet_coin = input(bet_message)
     while not self.enable_bet_coin(bet_coin):
       bet_coin = input(bet_message)
@@ -70,16 +70,16 @@ def create_players():
 
 def create_table():
   global table
-  table.append(Cell('R', 8, 'red'))
-  table.append(Cell('B', 8, 'black'))
-  table.append(Cell('1', 2, 'red'))
-  table.append(Cell('2', 2, 'black'))
-  table.append(Cell('3', 2, 'red'))
-  table.append(Cell('4', 2, 'black'))
-  table.append(Cell('5', 2, 'red'))
-  table.append(Cell('6', 2, 'black'))
-  table.append(Cell('7', 2, 'red'))
-  table.append(Cell('8', 2, 'black'))
+  table.append(Cell('R', 2, 'red'))
+  table.append(Cell('B', 2, 'black'))
+  table.append(Cell('1', 8, 'red'))
+  table.append(Cell('2', 8, 'black'))
+  table.append(Cell('3', 8, 'red'))
+  table.append(Cell('4', 8, 'black'))
+  table.append(Cell('5', 8, 'red'))
+  table.append(Cell('6', 8, 'black'))
+  table.append(Cell('7', 8, 'red'))
+  table.append(Cell('8', 8, 'black'))
 
 def show_table():
   for cell in table:
@@ -92,7 +92,7 @@ def color(color_name, string):
     return string
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug:play()')
   create_players()
   create_table()
   show_table()

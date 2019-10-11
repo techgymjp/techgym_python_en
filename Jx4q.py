@@ -5,6 +5,6 @@ class Player:
     self.name = name
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug:play()')
 
 play()
