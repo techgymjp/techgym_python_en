@@ -1,6 +1,6 @@
 import requests
 
-url = 'https://news.yahoo.co.jp/'
+url = 'https://bbc.com/news/world/'
 
 response = requests.get(url)
 print(response.text)

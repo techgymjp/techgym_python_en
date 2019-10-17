@@ -1,5 +1,5 @@
-friends = ['太郎', '花子', '次郎', '三郎', '良子']
+friends = ['Tom', 'Jane', 'Brian', 'Carol', 'Jack']
 i = 1
 for friend in friends:
-  print(f"{i}人目 {friend}")
+  print(f"{i}: {friend}")
   i += 1

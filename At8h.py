@@ -11,6 +11,6 @@ class Human(Player):
     self.coin = coin
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug:play()')
 
 play()
