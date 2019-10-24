@@ -28,7 +28,7 @@ def load_image():
       card_images.append(v_image)
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   load_image()
 
 play()

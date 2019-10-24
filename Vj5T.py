@@ -35,7 +35,7 @@ class Card:
     self.image = image
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   load_image()
 
 play()

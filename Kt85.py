@@ -8,26 +8,26 @@ import random
 card_images = []
 cards = []
 players = []
-marks = ['ハート', 'スペード', 'ダイヤ', 'クローバー']
-display_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+marks = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
+display_names = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
 numbers = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def load_image():
   image_name = 'cards.jpg'
   vsplit_number = 4
   hsplit_number = 13
-  
+
   if not os.path.isfile(image_name):
     response = requests.get('http://3156.bz/techgym/cards.jpg', allow_redirects=False)
     with open(image_name, 'wb') as image:
       image.write(response.content)
-   
+
   img = cv.imread('./'+image_name)
   img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
- 
+
   h, w = img.shape[:2]
   crop_img = img[:h // vsplit_number * vsplit_number, :w // hsplit_number * hsplit_number]
-  
+
   card_images.clear()
   for h_image in np.vsplit(crop_img, vsplit_number):
     for v_image in np.hsplit(h_image, hsplit_number):
@@ -49,11 +49,11 @@ class Player:
 
 class Human(Player):
   def __init__(self):
-    super().__init__('自分')
+    super().__init__('You')
 
 class Computer(Player):
   def __init__(self):
-    super().__init__('コンピューター')
+    super().__init__('Computer')
 
 def create_cards():
   cards.clear()
@@ -64,7 +64,7 @@ def create_cards():
 
 def show_cards(cards):
   for i, card in enumerate(cards):
-    print(f"{card.mark}{card.display_name}")
+    print(f"{card.display_name} of {card.mark}")
     plt.subplot(1, 6, i + 1)
     plt.axis('off')
     plt.imshow(card.image)
@@ -72,7 +72,7 @@ def show_cards(cards):
 
 def deal_card(player):
   tmp_cards = list(filter(lambda n: n.is_dealt == False, cards))
-  assert (len(tmp_cards) != 0), "残りカードなし"
+  assert (len(tmp_cards) != 0), "No cards left"
 
   tmp_card = random.choice( tmp_cards )
   tmp_card.is_dealt = True
@@ -89,13 +89,13 @@ def calc_ace(player):
         card.number = 1
 
 def win():
-  print('勝ち')
+  print('Won')
 
 def lose():
-  print('負け')
+  print('Lost')
 
 def choice():
-  message = 'ヒット[1] or スタンド[2]'
+  message = 'Hit[1] or stand[2]'
   choice_key = input(message)
   while not enable_choice(choice_key):
     choice_key = input(message)
@@ -123,13 +123,13 @@ def play_once():
     elif choice_key == 2:
       stand()
 
-def is_blackjack(): 
+def is_blackjack():
   if(players[0].total_number == 21):
     return True
   else:
     return False
 
-def is_burst(player): 
+def is_bust(player):
   if(player.total_number >= 22):
     return True
   else:
@@ -140,7 +140,7 @@ def hit():
   show_cards( players[0].cards )
   if is_blackjack():
     win()
-  elif is_burst(players[0]):
+  elif is_bust(players[0]):
     lose()
   else:
     choice_key = choice()
@@ -151,7 +151,7 @@ def hit():
 
 def stand():
   deal_card( players[1] )
-  if is_burst(players[1]):
+  if is_bust(players[1]):
     win()
   else:
     if players[1].total_number < 17:
@@ -161,7 +161,7 @@ def stand():
       show_result(result)
 
 def judge():
-  print('結果')
+  print('Result')
   diff = players[0].total_number - players[1].total_number
   if diff == 0:
     result = 'draw'
@@ -173,23 +173,23 @@ def judge():
 
 def show_result(result):
   for player in players:
-    print(f"{player.name}のカードは")
+    print(f"Hands of {player.name}:")
     show_cards( player.cards )
 
   if result == 'draw':
-    print('引き分け')
+    print('Draw')
   elif result == 'win':
-    print(f"{players[0].name}の勝ち")
+    print(f"{players[0].name} won")
   else:
-    print(f"{players[1].name}の勝ち")
+    print(f"{players[1].name} won")
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   load_image()
   create_cards()
   players.append( Human() )
   players.append( Computer() )
- 
+
   play_once()
 
 play()

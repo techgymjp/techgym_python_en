@@ -37,8 +37,8 @@ class Card:
 
 def create_cards():
   cards.clear()
-  marks = ['ハート', 'スペード', 'ダイヤ', 'クローバー']
-  display_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+  marks = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
+  display_names = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
   numbers = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
   for i, mark in enumerate(marks):
@@ -46,7 +46,7 @@ def create_cards():
       cards.append( Card(mark, display_names[j], number, card_images[i*len(numbers)+j]) )
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   load_image()
   create_cards()
 

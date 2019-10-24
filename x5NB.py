@@ -1,14 +1,14 @@
 import random
 
-hands = ['グー', 'チョキ', 'パー']
-results = {'win':'勝ち', 'lose':'負け', 'draw':'あいこ'}
-lifes = {'my':3, 'you':3}
+hands = ['rock', 'scissors', 'paper']
+results =  {'win':'win', 'lose':'lose', 'draw':'draw'}
+lives = {'my':3, 'you':3}
 
 def start_message():
-  print('じゃんけんスタート')
+  print('Start \'rock-scissors-paper\'')
 
 def show_life():
-  print(f"ライフ　自分:{lifes['my']}　/ 相手:{lifes['you']}")
+  print(f"Lives　You: {lives['my']}　/ Rival:{lives['you']}")
 
 def is_hand(string):
   if string.isdigit():
@@ -21,7 +21,7 @@ def is_hand(string):
     return False
 
 def get_my_hand():
-  print('自分の手を入力してください')
+  print('Input your hand')
   input_message = ''
   index = 0
   for hand in hands:
@@ -38,8 +38,8 @@ def get_hand_name(hand_number):
   return hands[hand_number]
 
 def view_hand(my_hand, you_hand):
-  print('自分の手は ' + get_hand_name(my_hand))
-  print('相手の手は ' + get_hand_name(you_hand))
+  print('My hand is ' + get_hand_name(my_hand))
+  print('Rival\'s hand is ' + get_hand_name(you_hand))
 
 def get_result(hand_diff):
   if hand_diff == 0:
@@ -54,11 +54,11 @@ def view_result(result):
   show_life()
 
 def update_life(result):
-  global lifes
+  global lives
   if result == 'win':
-    lifes['you'] -= 1
+    lives['you'] -= 1
   elif result == 'lose':
-    lifes['my'] -= 1
+    lives['my'] -= 1
 
 def play_once():
   my_hand = get_my_hand()
@@ -73,7 +73,7 @@ def play_once():
   result = get_result(hand_diff)
   update_life(result)
   view_result(result)
-  if lifes['my'] > 0 and lifes['you'] > 0:
+  if lives['my'] > 0 and lives['you'] > 0:
     play_once()
 
 def play():

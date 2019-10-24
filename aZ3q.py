@@ -8,8 +8,8 @@ import random
 card_images = []
 cards = []
 players = []
-marks = ['ハート', 'スペード', 'ダイヤ', 'クローバー']
-display_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+marks = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
+display_names = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
 numbers = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def load_image():
@@ -49,11 +49,11 @@ class Player:
 
 class Human(Player):
   def __init__(self):
-    super().__init__('自分')
+    super().__init__('You')
 
 class Computer(Player):
   def __init__(self):
-    super().__init__('コンピューター')
+    super().__init__('Computer')
 
 def create_cards():
   cards.clear()
@@ -64,7 +64,7 @@ def create_cards():
 
 def show_cards(cards):
   for i, card in enumerate(cards):
-    print(f"{card.mark}{card.display_name}")
+    print(f"{card.display_name} of {card.mark}")
     plt.subplot(1, 6, i + 1)
     plt.axis('off')
     plt.imshow(card.image)
@@ -72,7 +72,7 @@ def show_cards(cards):
 
 def deal_card(player):
   tmp_cards = list(filter(lambda n: n.is_dealt == False, cards))
-  assert (len(tmp_cards) != 0), "残りカードなし"
+  assert (len(tmp_cards) != 0), "No cards left"
 
   tmp_card = random.choice( tmp_cards )
   tmp_card.is_dealt = True
@@ -81,13 +81,13 @@ def deal_card(player):
   player.total_number += tmp_card.number
 
 def win():
-  print('勝ち')
+  print('Won')
 
 def lose():
-  print('負け')
+  print('Lost')
 
 def choice():
-  message = 'ヒット[1] or スタンド[2]'
+  message = 'Hit[1] or stand[2]'
   choice_key = input(message)
   while not enable_choice(choice_key):
     choice_key = input(message)
@@ -119,7 +119,7 @@ def is_blackjack():
   else:
     return False
 
-def is_burst(): 
+def is_bust(): 
   if(players[0].total_number >= 22):
     return True
   else:
@@ -130,7 +130,7 @@ def hit():
   show_cards( players[0].cards )
   if is_blackjack():
     win()
-  elif is_burst():
+  elif is_bust():
     lose()
   else:
     choice_key = choice()
@@ -138,7 +138,7 @@ def hit():
       hit()
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   load_image()
   create_cards()
   players.append( Human() )

@@ -13,7 +13,7 @@ class Team:
     self.total_score = 0
 
   def info(self):
-    print(self.name + ': 攻撃力:' + str(self.attack) + ' / 守備力:' + str(self.defense))
+    print(self.name + ': Offensive power:' + str(self.attack) + ' / Defensive power:' + str(self.defense))
 
   def get_hit_rate(self):
     return random.randint(10, self.attack)
@@ -23,14 +23,14 @@ class Team:
 
 def create_teams():
   global teams
-  team1 = Team(1, 'アタッカーズ', 80, 20)
-  team2 = Team(2, 'ディフェンダーズ', 30, 70)
-  team3 = Team(3, 'アベレージーズ', 50, 50)
+  team1 = Team('Atackers', 80, 20)
+  team2 = Team('Defenders', 30, 70)
+  team3 = Team('Averages', 50, 50)
   teams = [team1, team2, team3]
 
 def show_teams():
   index = 1
-  print('全チームの情報')
+  print('Information of all teams')
   for team in teams:
     print(str(index))
     team.info()
@@ -38,18 +38,18 @@ def show_teams():
 
 def choice_team(player):
   if player == 'myself':
-    player_name = '自分'
+    player_name = 'Your'
   elif player == 'enemy':
-    player_name = '相手'
+    player_name = 'Opponent\'s'
 
-  choice_team_message = player_name + 'のチームを選択してください（1〜3）'
+  choice_team_number = int(input('Select ' + player_name + ' team(1-3) '))
   choice_team_number = input(choice_team_message)
   while not enable_choice_team(choice_team_number, player):
     choice_team_number = input(choice_team_message)
   choice_team_number = int(choice_team_number)
 
   playing_teams[player] = teams[choice_team_number - 1]
-  print(player_name + 'のチームは「' + playing_teams[player].name + '」です')
+  print(player_name + ' team is \'' + playing_teams[player].name + '\'')
 
 def enable_choice_team(string, player):
   if string.isdigit():
@@ -81,7 +81,7 @@ def play():
   show_teams()
   choice_team('myself')
   choice_team('enemy')
-  score_boards = ['＿＿｜', '自分｜', '相手｜']
+  score_boards = ['________|', 'You     |','Opponent|']
   for i in range(9):
     score_boards[0] += str(i + 1) + '｜'
     # 表の攻撃

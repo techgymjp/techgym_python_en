@@ -8,8 +8,8 @@ import random
 card_images = []
 cards = []
 players = []
-marks = ['ハート', 'スペード', 'ダイヤ', 'クローバー']
-display_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+marks = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
+display_names = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
 numbers = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def load_image():
@@ -49,11 +49,11 @@ class Player:
 
 class Human(Player):
   def __init__(self):
-    super().__init__('自分')
+    super().__init__('You')
 
 class Computer(Player):
   def __init__(self):
-    super().__init__('コンピューター')
+    super().__init__('Computer')
 
 def create_cards():
   cards.clear()
@@ -64,7 +64,7 @@ def create_cards():
 
 def show_cards(cards):
   for i, card in enumerate(cards):
-    print(f"{card.mark}{card.display_name}")
+    print(f"{card.display_name} of {card.mark}")
     plt.subplot(1, 6, i + 1)
     plt.axis('off')
     plt.imshow(card.image)
@@ -72,7 +72,7 @@ def show_cards(cards):
 
 def deal_card(player):
   tmp_cards = list(filter(lambda n: n.is_dealt == False, cards))
-  assert (len(tmp_cards) != 0), "残りカードなし"
+  assert (len(tmp_cards) != 0), "No cards left"
 
   tmp_card = random.choice( tmp_cards )
   tmp_card.is_dealt = True
@@ -81,7 +81,7 @@ def deal_card(player):
   player.total_number += tmp_card.number
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   load_image()
   create_cards()
   players.append( Human() )

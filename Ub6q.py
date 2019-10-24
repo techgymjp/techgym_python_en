@@ -43,16 +43,16 @@ class Player:
 
 class Human(Player):
   def __init__(self):
-    super().__init__('自分')
+    super().__init__('You')
 
 class Computer(Player):
   def __init__(self):
-    super().__init__('コンピューター')
+    super().__init__('Computer')
 
 def create_cards():
   cards.clear()
-  marks = ['ハート', 'スペード', 'ダイヤ', 'クローバー']
-  display_names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+  marks = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
+  display_names = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
   numbers = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
   for i, mark in enumerate(marks):
@@ -60,14 +60,14 @@ def create_cards():
       cards.append( Card(mark, display_names[j], number, card_images[i*len(numbers)+j]) )
 
 def show_card(card):
-  print(f"{card.mark}{card.display_name}")
+  print(f"{card.display_name} of {card.mark}")
   plt.subplot(1,6,1)
   plt.axis("off")
   plt.imshow(card.image)
   plt.show()
 
 def play():
-  print('デバッグログ：play()')
+  print('Debug: play()')
   load_image()
   create_cards()
   show_card(cards[10])
