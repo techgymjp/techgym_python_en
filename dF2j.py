@@ -66,6 +66,7 @@ class Computer(Player):
 
 def create_cards():
     cards.clear()
+
     for i, mark in enumerate(marks):
         for j, number in enumerate(numbers):
             cards.append(
@@ -130,18 +131,15 @@ def enable_choice(string):
 
 def play_once():
     deal_card(players[0])
+    deal_card(players[1])
     deal_card(players[0])
-    deal_card(players[1])
-    deal_card(players[1])
     show_cards(players[0].cards)
-
     if is_blackjack():
         win()
     else:
         choice_key = choice()
         if choice_key == 1:
             hit()
-            stand()
         elif choice_key == 2:
             stand()
 
@@ -163,19 +161,25 @@ def is_bust(player):
 def hit():
     deal_card(players[0])
     show_cards(players[0].cards)
-
-
-def stand():
     if is_blackjack():
         win()
     elif is_bust(players[0]):
         lose()
     else:
-        if players[1].total_number < 17:
-            deal_card(players[1])
+        choice_key = choice()
+        if choice_key == 1:
+            hit()
+        elif choice_key == 2:
+            stand()
 
-        if is_bust(players[1]):
-            win()
+
+def stand():
+    deal_card(players[1])
+    if is_bust(players[1]):
+        win()
+    else:
+        if players[1].total_number < 17:
+            stand()
         else:
             result = judge()
             show_result(result)
