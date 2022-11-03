@@ -196,7 +196,7 @@ def judge():
 
 def show_result(result):
     for player in players:
-        print(f"Hands of {player.name}:")
+        print(f"Cards of {player.name}:")
         show_cards(player.cards)
 
     if result == 'draw':
