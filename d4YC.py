@@ -9,108 +9,127 @@ card_images = []
 cards = []
 players = []
 marks = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
-display_names = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
+display_names = ['Ace', '2', '3', '4', '5', '6',
+                 '7', '8', '9', '10', 'Jack', 'Queen', 'King']
 numbers = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
+
 def load_image():
-  image_name = 'cards.jpg'
-  vsplit_number = 4
-  hsplit_number = 13
-  
-  if not os.path.isfile(image_name):
-    response = requests.get('http://3156.bz/techgym/cards.jpg', allow_redirects=False)
-    with open(image_name, 'wb') as image:
-      image.write(response.content)
-   
-  img = cv.imread('./'+image_name)
-  img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
- 
-  h, w = img.shape[:2]
-  crop_img = img[:h // vsplit_number * vsplit_number, :w // hsplit_number * hsplit_number]
-  
-  card_images.clear()
-  for h_image in np.vsplit(crop_img, vsplit_number):
-    for v_image in np.hsplit(h_image, hsplit_number):
-      card_images.append(v_image)
+    image_name = 'cards.jpg'
+    vsplit_number = 4
+    hsplit_number = 13
+
+    if not os.path.isfile(image_name):
+        response = requests.get(
+            'http://3156.bz/techgym/cards.jpg', allow_redirects=False)
+        with open(image_name, 'wb') as image:
+            image.write(response.content)
+
+    img = cv.imread('./'+image_name)
+    img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+
+    h, w = img.shape[:2]
+    crop_img = img[:h // vsplit_number * vsplit_number,
+                   :w // hsplit_number * hsplit_number]
+
+    card_images.clear()
+    for h_image in np.vsplit(crop_img, vsplit_number):
+        for v_image in np.hsplit(h_image, hsplit_number):
+            card_images.append(v_image)
+
 
 class Card:
-  def __init__(self, mark, display_name, number, image):
-    self.mark = mark
-    self.display_name = display_name
-    self.number = number
-    self.image = image
-    self.is_dealt = False
+    def __init__(self, mark, display_name, number, image):
+        self.mark = mark
+        self.display_name = display_name
+        self.number = number
+        self.image = image
+        self.is_dealt = False
+
 
 class Player:
-  def __init__(self, name):
-    self.name = name
-    self.cards = []
-    self.total_number = 0
+    def __init__(self, name):
+        self.name = name
+        self.cards = []
+        self.total_number = 0
+
 
 class Human(Player):
-  def __init__(self):
-    super().__init__('You')
+    def __init__(self):
+        super().__init__('You')
+
 
 class Computer(Player):
-  def __init__(self):
-    super().__init__('Computer')
+    def __init__(self):
+        super().__init__('Computer')
+
 
 def create_cards():
-  cards.clear()
+    cards.clear()
 
-  for i, mark in enumerate(marks):
-    for j, number in enumerate(numbers):
-      cards.append( Card(mark, display_names[j], number, card_images[i*len(numbers)+j]) )
+    for i, mark in enumerate(marks):
+        for j, number in enumerate(numbers):
+            cards.append(
+                Card(mark, display_names[j], number, card_images[i*len(numbers)+j]))
+
 
 def show_cards(cards):
-  for i, card in enumerate(cards):
-    print(f"{card.display_name} of {card.mark}")
-    plt.subplot(1, 6, i + 1)
-    plt.axis('off')
-    plt.imshow(card.image)
-  plt.show()
+    for i, card in enumerate(cards):
+        print(f"{card.display_name} of {card.mark}")
+        plt.subplot(1, 6, i + 1)
+        plt.axis('off')
+        plt.imshow(card.image)
+    plt.show()
+
 
 def deal_card(player):
-  tmp_cards = list(filter(lambda n: n.is_dealt == False, cards))
-  assert (len(tmp_cards) != 0), "No cards left"
+    tmp_cards = list(filter(lambda n: n.is_dealt == False, cards))
+    assert (len(tmp_cards) != 0), "No cards left"
 
-  tmp_card = random.choice( tmp_cards )
-  tmp_card.is_dealt = True
+    tmp_card = random.choice(tmp_cards)
+    tmp_card.is_dealt = True
 
-  player.cards.append( tmp_card )
-  player.total_number += tmp_card.number
+    player.cards.append(tmp_card)
+    player.total_number += tmp_card.number
+
 
 def win():
-  print('Won')
+    print('Won')
+
 
 def choice():
-  message = 'Hit[1] or stand[2]'
-  choice_key = input(message)
-  while not enable_choice(choice_key):
+    message = 'Hit[1] or stand[2]'
     choice_key = input(message)
-  return int(choice_key)
+    while not enable_choice(choice_key):
+        choice_key = input(message)
+    return int(choice_key)
+
 
 def enable_choice(string):
-  if string.isdigit():
-    number = int(string)
-    if number >= 1 and number <= 2:
-      return True
+    if string.isdigit():
+        number = int(string)
+        if number >= 1 and number <= 2:
+            return True
+        else:
+            return False
     else:
-      return False
+        return False
+
 
 def play():
-  print('Debug: play()')
-  load_image()
-  create_cards()
-  players.append( Human() )
-  players.append( Computer() )
-  deal_card( players[0] )
-  deal_card( players[1] )
-  deal_card( players[0] )
-  show_cards( players[0].cards )
-  choice()
+    print('Debug: play()')
+    load_image()
+    create_cards()
+    players.append(Human())
+    players.append(Computer())
+    deal_card(players[0])
+    deal_card(players[1])
+    deal_card(players[0])
+    show_cards(players[0].cards)
+    choice()
 
-  if(players[0].total_number == 21):
-    win()
+    if (players[0].total_number == 21):
+        win()
+
 
 play()
