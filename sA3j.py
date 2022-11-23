@@ -2,7 +2,7 @@ import random
 import math
 
 data = [['O', '0'], ['l', '1'], ['u', 'v']]
-number_data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+number_data = ['A', 'B', 'C', 'D', 'E']
 level = 1
 col = 5
 row = 4
@@ -49,7 +49,7 @@ def view_question():
 
 def change_input_number(input_str):
     str_data = {'A': 0, 'B': 1, 'C': 2, 'D': 3,
-                'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8}
+                'E': 4}
     input_str_split = list(input_str)
     col_number = str_data[input_str_split[0]]
     row_number = int(input_str_split[1]) - 1
