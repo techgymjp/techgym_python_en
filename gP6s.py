@@ -25,8 +25,8 @@ def view_result(hand_diff):
 
 start_message()
 
-my_hand = get_player()
-you_hand = get_computer()
-hand_diff = my_hand - you_hand
+your_hand = get_player()
+computer_hand = get_computer()
+hand_diff = your_hand - computer_hand
 
 view_result(hand_diff)

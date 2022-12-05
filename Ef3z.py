@@ -35,9 +35,9 @@ def get_hand_name(hand_number):
     return hands[hand_number]
 
 
-def view_hand(my_hand, you_hand):
-    print('My hand is ' + get_hand_name(my_hand))
-    print('Rival\'s hand is ' + get_hand_name(you_hand))
+def view_hand(your_hand, computer_hand):
+    print('My hand is ' + get_hand_name(your_hand))
+    print('Rival\'s hand is ' + get_hand_name(computer_hand))
 
 
 def get_result(hand_diff):
@@ -54,14 +54,14 @@ def view_result(result):
 
 
 def play():
-    my_hand = get_player()
-    while not is_hand(my_hand):
-        my_hand = get_player()
+    your_hand = get_player()
+    while not is_hand(your_hand):
+        your_hand = get_player()
 
-    you_hand = get_computer()
-    hand_diff = my_hand - you_hand
+    computer_hand = get_computer()
+    hand_diff = your_hand - computer_hand
 
-    view_hand(my_hand, you_hand)
+    view_hand(your_hand, computer_hand)
     result = get_result(hand_diff)
     view_result(result)
     if result == 'draw':
