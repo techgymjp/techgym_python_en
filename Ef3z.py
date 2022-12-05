@@ -1,7 +1,7 @@
 import random
 
 hands = ['rock', 'scissors', 'paper']
-results = {'win': 'win', 'lose': 'lose', 'draw': 'draw'}
+results = {'win': 'win', 'lose': 'lose', 'draw': 'draw try again'}
 
 
 def start_message():
