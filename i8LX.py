@@ -5,7 +5,7 @@ results = {'win': 'win', 'lose': 'lose', 'draw': 'draw try again'}
 
 
 def start_message():
-    print('Start \'rock-scissors-paper\'')
+    print('Start \'rock-paper-scissors\'')
 
 
 def is_hand(string):

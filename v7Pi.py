@@ -1,6 +1,6 @@
 import random
 
-print('Start \'rock-scissors-paper\'')
+print('Start \'rock-paper-scissors\'')
 
 print('Input your hand')
 your_hand = int(input('0:rock, 1:scissors, 2:paper'))

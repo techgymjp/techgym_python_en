@@ -2,7 +2,7 @@ import random
 
 
 def start_message():
-    print('Start \'rock-scissors-paper\'')
+    print('Start \'rock-paper-scissors\'')
 
 
 def get_player():
