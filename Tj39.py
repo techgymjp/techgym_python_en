@@ -15,7 +15,7 @@ def load_image():
 
     if not os.path.isfile(image_name):
         response = requests.get(
-            'http://3156.bz/techgym/cards.jpg', allow_redirects=False)
+            'https://raw.githubusercontent.com/techgymjp/techgym_python/master/cards.jpg', allow_redirects=False)
         with open(image_name, 'wb') as image:
             image.write(response.content)
 
