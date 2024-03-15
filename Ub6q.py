@@ -70,6 +70,5 @@ def play():
   print('Debug: play()')
   load_image()
   create_cards()
-  show_card(cards[10])
 
 play()
