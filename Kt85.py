@@ -4,6 +4,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import time
 
 card_images = []
 cards = []
@@ -80,6 +81,7 @@ def show_cards(cards):
         plt.axis('off')
         plt.imshow(card.image)
     plt.show()
+    time.sleep(0.05) # Wait for the drawing to complete
 
 
 def deal_card(player):
